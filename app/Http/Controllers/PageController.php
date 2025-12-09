@@ -3,27 +3,46 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Item;
+use App\Models\Animal;
+use App\Models\Event;
+use App\Models\Advice;
+use App\Models\Story;
 
 class PageController extends Controller
 {
-    // Главная страница (доступна всем)
     public function home()
     {
-        return view('pages.home');
+        $events = Event::orderBy('starts_at')->take(3)->get();
+        $animals = Animal::where('status', 'available')->take(6)->get();
+        return view('pages.home', compact('events', 'animals'));
     }
 
-    // Страница1 — карточки
-    public function page1()
+    public function animals()
     {
-        $items = Item::all();
-        return view('pages.page1', compact('items'));
+        $animals = Animal::paginate(12);
+        return view('pages.animals.index', compact('animals'));
     }
 
-    // Страница2 — список
-    public function page2()
+    public function animalShow(Animal $animal)
     {
-        $items = Item::all();
-        return view('pages.page2', compact('items'));
+        return view('pages.animals.show', compact('animal'));
+    }
+
+    public function events()
+    {
+        $events = Event::orderBy('starts_at')->paginate(10);
+        return view('pages.events.index', compact('events'));
+    }
+
+    public function advices()
+    {
+        $advices = Advice::paginate(10);
+        return view('pages.advices.index', compact('advices'));
+    }
+
+    public function stories()
+    {
+        $stories = Story::with('user')->paginate(10);
+        return view('pages.stories.index', compact('stories'));
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Event extends Model
 {
@@ -18,8 +19,9 @@ class Event extends Model
         'capacity',
     ];
 
-    protected $dates = [
-        'starts_at',
-        'ends_at',
+    // Объявляем, что эти поля — даты
+    protected $casts = [
+        'starts_at' => 'datetime',
+        'ends_at' => 'datetime',
     ];
 }

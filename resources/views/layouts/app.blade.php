@@ -22,8 +22,7 @@
         <div><a href="{{ route('home') }}"><strong>SimpleSite</strong></a></div>
         <nav>
             <a href="{{ route('home') }}">Главная</a>
-            <a href="{{ route('page1') }}">Страница1</a>
-            <a href="{{ route('page2') }}">Страница2</a>
+
             @auth
                 <a href="{{ route('dashboard') }}">Панель</a>
                 <form method="POST" action="{{ route('logout') }}" style="display:inline">

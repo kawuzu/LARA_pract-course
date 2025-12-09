@@ -4,9 +4,14 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 
+// Публичные страницы
 Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('/page1', [PageController::class, 'page1'])->name('page1');
-Route::get('/page2', [PageController::class, 'page2'])->name('page2');
+Route::get('/animals', [PageController::class, 'animals'])->name('animals.index');
+Route::get('/animals/{animal}', [PageController::class, 'animalShow'])->name('animals.show');
+Route::get('/events', [PageController::class, 'events'])->name('events.index');
+Route::get('/advices', [PageController::class, 'advices'])->name('advices.index');
+Route::get('/stories', [PageController::class, 'stories'])->name('stories.index');
+
 
 
 Route::get('/dashboard', function () {
