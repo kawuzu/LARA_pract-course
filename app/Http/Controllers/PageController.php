@@ -19,7 +19,7 @@ class PageController extends Controller
 
     public function animals()
     {
-        $animals = Animal::paginate(12);
+        $animals = Animal::orderBy('created_at','desc')->paginate(12);
         return view('pages.animals.index', compact('animals'));
     }
 
@@ -36,13 +36,13 @@ class PageController extends Controller
 
     public function advices()
     {
-        $advices = Advice::paginate(10);
+        $advices = Advice::orderBy('created_at','desc')->paginate(10);
         return view('pages.advices.index', compact('advices'));
     }
 
     public function stories()
     {
-        $stories = Story::with('user')->paginate(10);
+        $stories = Story::with('user')->orderBy('created_at','desc')->paginate(10);
         return view('pages.stories.index', compact('stories'));
     }
 }
