@@ -14,8 +14,15 @@
                 <p><strong>Статус:</strong> {{ $animal->status }}</p>
             </div>
         </div>
-        <div style="width:320px">
+
+        <div style="width:360px">
             <div class="card">
+                @if($animal->photo_url)
+                    <div style="margin-bottom:12px">
+                        <img src="{{ $animal->photo_url }}" alt="{{ $animal->name }}" style="width:100%;height:auto;display:block;border:1px solid #eee;padding:6px;background:#fff;border-radius:6px"/>
+                    </div>
+                @endif
+
                 <h4>Описание</h4>
                 <p>{{ $animal->description }}</p>
             </div>
