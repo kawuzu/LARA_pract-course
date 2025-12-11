@@ -7,7 +7,7 @@ use App\Models\Animal;
 use App\Models\Event;
 use App\Models\Advice;
 use App\Models\Story;
-
+use App\Models\Banner;
 class PageController extends Controller
 {
     public function home()
@@ -51,7 +51,7 @@ class PageController extends Controller
         $lost = Animal::where('category', 'lost')->orderBy('created_at', 'desc')->get();
         $found = Animal::where('category', 'found')->orderBy('created_at', 'desc')->get();
 
-        return view('pages.lostfound', compact('lost', 'found'));
+        return view('pages.lost_reports', compact('lost', 'found'));
     }
 
     public function storeLost(Request $request)
@@ -124,5 +124,9 @@ class PageController extends Controller
         return view('pages.stories.show', compact('story'));
     }
 
+    public function getRandomBanner()
+    {
+        return Banner::inRandomOrder()->first();
+    }
 
 }

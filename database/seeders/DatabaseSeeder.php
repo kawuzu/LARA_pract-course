@@ -21,10 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EventSeeder::class);
         $this->call(AdviceSeeder::class);
         $this->call(StorySeeder::class);
-
-        //User::factory()->create([
-            //'name' => 'Test User',
-            //'email' => 'test@example.com',
-        //]);
+        $this->call(BannerSeeder::class);
     }
 }

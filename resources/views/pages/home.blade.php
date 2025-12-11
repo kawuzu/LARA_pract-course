@@ -50,4 +50,6 @@
         </style>
     @endpush
 
+    {{-- Баннер --}}
+    @include('partials.banner', ['banner' => \App\Models\Banner::inRandomOrder()->first()])
 @endsection
