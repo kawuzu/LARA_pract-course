@@ -20,7 +20,7 @@
     <section style="margin-top:24px">
         <h2>Истории усыновления</h2>
         <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px">
-            @foreach(\App\Models\Story::with('user')->take(6)->get() as $story)
+            @foreach(\App\Models\Story::with('user')->take(4)->get() as $story)
                 <a href="{{ route('stories.show', $story) }}" style="text-decoration:none;color:inherit;">
                     <div class="card" style="position:relative;overflow:hidden;">
                         @if($story->photo)
