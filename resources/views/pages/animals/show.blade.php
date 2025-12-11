@@ -7,7 +7,7 @@
     <div style="display:flex;gap:16px;align-items:flex-start">
         <div style="flex:1">
             <div class="card">
-                <p><strong>Вид:</strong> {{ $animal->species }}</p>
+{{--                <p><strong>Вид:</strong> {{ $animal->species }}</p>--}}
                 <p><strong>Порода:</strong> {{ $animal->breed }}</p>
                 <p><strong>Возраст:</strong> {{ $animal->age }}</p>
                 <p><strong>Пол:</strong> {{ $animal->sex }}</p>

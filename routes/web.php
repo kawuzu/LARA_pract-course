@@ -21,11 +21,16 @@ Route::get('/advices', [PageController::class, 'advices'])->name('advices.index'
 Route::get('/stories', [PageController::class, 'stories'])->name('stories.index');
 
 // Потеряшки / найденыши
-
 use App\Http\Controllers\LostReportController;
 
 Route::get('/lost-reports', [LostReportController::class, 'index'])->name('lost_reports.index');
 Route::post('/lost-reports', [LostReportController::class, 'store'])->name('lost_reports.store');
+
+//наши мероприятия
+use App\Http\Controllers\EventController;
+
+Route::get('/events/calendar', [EventController::class, 'calendar'])->name('events.calendar');
+Route::get('/events/filter', [EventController::class, 'filter'])->name('events.filter');
 
 
 // дэшборд для авторизованных

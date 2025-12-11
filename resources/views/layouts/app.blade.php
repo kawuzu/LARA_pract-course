@@ -26,10 +26,10 @@
         <div><a href="{{ route('home') }}"><strong>Приют</strong></a></div>
         <nav>
             <a href="{{ route('home') }}">Главная</a>
-            <a href="{{ route('animals.index') }}">Животные</a>
-            <a href="{{ route('events.index') }}">Мероприятия</a>
+            <a href="{{ route('animals.index') }}">Приютить</a>
+            <a href="{{ route('events.index') }}">Наши мероприятия</a>
             <a href="{{ route('advices.index') }}">Советы</a>
-            <a href="{{ route('stories.index') }}">Истории</a>
+            <a href="{{ route('stories.index') }}">Ваши истории</a>
             <a href="{{ route('lost_reports.index') }}">Потеряшки/Найдёныши</a>
 
         @auth

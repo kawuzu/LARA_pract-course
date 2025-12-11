@@ -92,5 +92,19 @@ class PageController extends Controller
         return redirect()->route('lostfound')->with('success','Найдёныш добавлен');
     }
 
+    public function eventsFilter(Request $request)
+    {
+        $date = $request->query('date'); // формат: Y-m-d
+        if ($date) {
+            $events = Event::whereDate('starts_at', $date)
+                ->orderBy('starts_at')
+                ->get();
+        } else {
+            $events = Event::orderBy('starts_at')->get();
+        }
+
+        return view('pages.events.index', compact('events', 'date'));
+    }
+
 
 }

@@ -1,0 +1,85 @@
+@extends('layouts.app')
+
+@section('title','Наши мероприятия')
+
+@section('content')
+    <h1>Наши мероприятия</h1>
+
+    <!-- Календарь -->
+    <div style="margin-bottom:20px;">
+        <label for="month">Выберите месяц:</label>
+        <input type="month" id="month" name="month" />
+
+        <button id="showBtn" class="btn">Показать</button>
+    </div>
+
+    <div id="calendar" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:20px;">
+        <!-- Сетка чисел будет вставляться JS -->
+    </div>
+
+    <!-- События -->
+    <div class="grid" id="events-list" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
+        @forelse($events as $event)
+            <div class="card">
+                <h3>{{ $event->title }}</h3>
+                <p class="muted">{{ $event->starts_at ? $event->starts_at->format('d.m.Y H:i') : '' }} — {{ $event->location }}</p>
+                <p>{{ \Illuminate\Support\Str::limit($event->description, 160) }}</p>
+            </div>
+        @empty
+            <div class="card">Нет мероприятий.</div>
+        @endforelse
+    </div>
+
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const monthInput = document.getElementById('month');
+                const calendarEl = document.getElementById('calendar');
+                const eventsListEl = document.getElementById('events-list');
+                const showBtn = document.getElementById('showBtn');
+
+                function generateCalendar(year, month) {
+                    calendarEl.innerHTML = '';
+                    const firstDay = new Date(year, month, 1).getDay();
+                    const lastDate = new Date(year, month + 1, 0).getDate();
+
+                    // смещение дней недели (понедельник=1)
+                    let offset = firstDay === 0 ? 6 : firstDay - 1;
+
+                    // пустые клетки
+                    for (let i = 0; i < offset; i++) {
+                        const empty = document.createElement('div');
+                        calendarEl.appendChild(empty);
+                    }
+
+                    for (let d = 1; d <= lastDate; d++) {
+                        const day = document.createElement('div');
+                        day.textContent = d;
+                        day.style.padding = '8px';
+                        day.style.border = '1px solid #ccc';
+                        day.style.textAlign = 'center';
+                        day.style.cursor = 'pointer';
+                        day.addEventListener('click', function() {
+                            const selectedDate = new Date(year, month, d);
+                            const y = selectedDate.getFullYear();
+                            const m = String(selectedDate.getMonth()+1).padStart(2,'0');
+                            const dayStr = String(selectedDate.getDate()).padStart(2,'0');
+                            window.location.href = "{{ route('events.filter') }}?date=" + y + '-' + m + '-' + dayStr;
+                        });
+                        calendarEl.appendChild(day);
+                    }
+                }
+
+                // показать календарь для текущего месяца
+                const now = new Date();
+                monthInput.value = now.toISOString().substr(0,7);
+                generateCalendar(now.getFullYear(), now.getMonth());
+
+                showBtn.addEventListener('click', function() {
+                    const [y,m] = monthInput.value.split('-');
+                    generateCalendar(parseInt(y), parseInt(m)-1);
+                });
+            });
+        </script>
+    @endpush
+@endsection
