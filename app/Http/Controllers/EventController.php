@@ -22,4 +22,24 @@ class EventController extends Controller
         $events = Event::whereDate('starts_at', $date)->orderBy('starts_at')->get();
         return view('pages.events.calendar', compact('events', 'date'));
     }
+
+    // Публичная страница мероприятия
+    public function show(Event $event)
+    {
+        return view('pages.events.show', compact('event'));
+    }
+
+    // Запись на мероприятие
+    public function register(Event $event)
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('login');
+        }
+
+        // Здесь предполагаем связь Many-to-Many user <-> event
+        $event->users()->syncWithoutDetaching($user->id);
+
+        return redirect()->back()->with('success', 'Вы успешно записаны на мероприятие!');
+    }
 }

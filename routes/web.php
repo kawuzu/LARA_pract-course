@@ -38,6 +38,10 @@ Route::get('/events', [PageController::class, 'events'])->name('events.index');
 Route::get('/events/calendar', [EventController::class, 'calendar'])->name('events.calendar');
 Route::get('/events/filter', [EventController::class, 'filter'])->name('events.filter');
 
+Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
+Route::post('/events/{event}/register', [EventController::class, 'register'])->middleware('auth')->name('events.register');
+
+
 // дэшборд для авторизованных
 Route::get('/dashboard', function () {
     return view('dashboard');

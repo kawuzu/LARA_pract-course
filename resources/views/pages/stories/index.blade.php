@@ -10,7 +10,6 @@
             <a href="{{ route('stories.show', $story) }}">
                 <h3>{{ $story->title }}</h3>
             </a>
-            <p class="muted">Автор: {{ $story->user ? $story->user->name : 'Гость' }}</p>
             <p>{{ \Illuminate\Support\Str::limit($story->body, 300) }}</p>
         </div>
     @endforeach

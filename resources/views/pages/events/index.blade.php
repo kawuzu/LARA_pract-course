@@ -77,6 +77,8 @@
                 <h3>{{ $event->title }}</h3>
                 <p class="muted">{{ $event->starts_at ? $event->starts_at->format('d.m.Y H:i') : '' }} — {{ $event->location }}</p>
                 <p>{{ \Illuminate\Support\Str::limit($event->description, 160) }}</p>
+                <a href="{{ route('events.show', $event) }}" class="btn">Подробнее</a>
+
             </div>
         @empty
             <div class="card">Нет мероприятий на выбранную дату.</div>

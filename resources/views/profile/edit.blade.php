@@ -42,6 +42,21 @@
             <input type="password" name="password_confirmation" placeholder="Повторите пароль" class="form-control mb-2">
             <button class="btn btn-warning">Изменить пароль</button>
         </form>
-
     </div>
+
+    <h2 class="text-xl font-bold mb-4">Ваши мероприятия</h2>
+
+    @if($events->count() === 0)
+        <p>Вы ещё не записаны ни на одно мероприятие.</p>
+    @else
+        <ul class="space-y-2">
+            @foreach($events as $event)
+                <li class="p-4 border rounded-lg">
+                    <h3 class="font-semibold text-lg">{{ $event->title }}</h3>
+                    <p>{{ $event->date }}</p>
+                </li>
+            @endforeach
+        </ul>
+    @endif
+
 @endsection

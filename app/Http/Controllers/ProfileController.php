@@ -13,13 +13,12 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $user = Auth::user();
-
-        // Если позже добавим запись на мероприятия — сюда попадут мероприятия пользователя:
-        $events = $user->events()->get() ?? collect();
+        $user = auth()->user();
+        $events = $user->events()->orderBy('created_at', 'asc')->get();
 
         return view('profile.edit', compact('user', 'events'));
     }
+
 
     /**
      * Обновление имени и e-mail

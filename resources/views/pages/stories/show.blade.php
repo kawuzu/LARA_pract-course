@@ -9,8 +9,6 @@
         <img src="{{ asset('storage/' . $story->photo) }}" alt="{{ $story->title }}" style="width:100%;max-height:400px;object-fit:cover;margin-bottom:12px;">
     @endif
 
-    <p class="muted">Автор: {{ $story->user ? $story->user->name : 'Гость' }}</p>
-
     <p>{{ $story->body }}</p>
 
     <a href="{{ route('stories.index') }}" class="btn" style="margin-top:12px;display:inline-block">Назад к списку историй</a>
