@@ -37,9 +37,6 @@ Route::get('/events', [PageController::class, 'events'])->name('events.index');
 Route::get('/events/calendar', [EventController::class, 'calendar'])->name('events.calendar');
 Route::get('/events/filter', [EventController::class, 'filter'])->name('events.filter');
 
-
-
-
 // дэшборд для авторизованных
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -58,13 +55,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
 
 
 // Профиль
+use App\Http\Controllers\ProfileController;
+
 Route::prefix('profile')->middleware('auth')->group(function () {
-    Route::get('/', [\App\Http\Controllers\ProfileController::class, 'edit'])
-        ->name('profile.edit');
-
-    Route::post('/', [\App\Http\Controllers\ProfileController::class, 'update'])
-        ->name('profile.update');
-
-    Route::post('/password', [\App\Http\Controllers\ProfileController::class, 'password'])
-        ->name('profile.password');
+    Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/password', [ProfileController::class, 'password'])->name('profile.password');
+    Route::post('/avatar', [ProfileController::class, 'avatar'])->name('profile.avatar');
 });
+
+

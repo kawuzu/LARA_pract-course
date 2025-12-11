@@ -1,56 +1,47 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold">
-            {{ __('Профиль пользователя') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-6">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 space-y-6">
+@section('content')
+    <div class="container">
 
-            {{-- Обновление информации --}}
-            <div class="bg-white p-6 shadow-sm rounded-lg">
-                <h3 class="text-lg font-medium mb-4">Личные данные</h3>
+        <h1>Профиль</h1>
 
-                <form method="POST" action="{{ route('profile.update') }}">
-                    @csrf
+        <!-- Аватар -->
+        <div>
+            <h3>Аватар</h3>
 
-                    <div class="mb-4">
-                        <label class="block font-medium">Имя</label>
-                        <input type="text" name="name" class="mt-1 w-full border rounded p-2"
-                               value="{{ old('name', auth()->user()->name) }}">
-                    </div>
+            <img src="{{ $user->avatar ? asset('storage/'.$user->avatar) : 'https://via.placeholder.com/150' }}"
+                 width="150" class="rounded-circle mb-3">
 
-                    <div class="mb-4">
-                        <label class="block font-medium">Email</label>
-                        <input type="email" name="email" class="mt-1 w-full border rounded p-2"
-                               value="{{ old('email', auth()->user()->email) }}">
-                    </div>
-
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded">
-                        Сохранить
-                    </button>
-                </form>
-            </div>
-
-            {{-- Изменение пароля --}}
-            <div class="bg-white p-6 shadow-sm rounded-lg">
-                <h3 class="text-lg font-medium mb-4">Изменить пароль</h3>
-
-                <form method="POST" action="{{ route('profile.password') }}">
-                    @csrf
-
-                    <div class="mb-4">
-                        <label class="block font-medium">Новый пароль</label>
-                        <input type="password" name="password" class="mt-1 w-full border rounded p-2">
-                    </div>
-
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded">
-                        Изменить
-                    </button>
-                </form>
-            </div>
-
+            <form action="{{ route('profile.avatar') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="avatar" class="form-control mb-2">
+                <button class="btn btn-primary">Обновить аватар</button>
+            </form>
         </div>
+
+        <hr>
+
+        <!-- Данные профиля -->
+        <h3>Данные аккаунта</h3>
+
+        <form action="{{ route('profile.update') }}" method="POST">
+            @csrf
+            <input type="text" name="name" value="{{ $user->name }}" class="form-control mb-2">
+            <input type="email" name="email" value="{{ $user->email }}" class="form-control mb-2">
+            <button class="btn btn-success">Обновить</button>
+        </form>
+
+        <hr>
+
+        <!-- Пароль -->
+        <h3>Изменение пароля</h3>
+
+        <form action="{{ route('profile.password') }}" method="POST">
+            @csrf
+            <input type="password" name="password" placeholder="Новый пароль" class="form-control mb-2">
+            <input type="password" name="password_confirmation" placeholder="Повторите пароль" class="form-control mb-2">
+            <button class="btn btn-warning">Изменить пароль</button>
+        </form>
+
     </div>
-</x-app-layout>
+@endsection
