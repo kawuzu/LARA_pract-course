@@ -5,37 +5,70 @@
 @section('content')
     <h1>Наши мероприятия</h1>
 
-    <!-- Форма фильтра по дате -->
-    <form method="GET" action="{{ route('events.filter') }}" style="margin-bottom:20px; display:flex; align-items:center; gap:8px;">
-        <label for="date">Выберите дату:</label>
-        <input type="date" name="date" id="date" value="{{ $date ?? '' }}" style="padding:6px;"/>
-        <button type="submit" class="btn">Показать</button>
-        <a href="{{ route('events.index') }}" class="btn">Сбросить</a>
-    </form>
+    <!-- Календарь -->
+    <div style="margin-bottom:20px;">
+        <label for="month">Выберите месяц:</label>
+        <input type="month" id="month" name="month" />
 
-    <!-- Сетка календаря -->
-    <div id="calendar" style="display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin-bottom:16px;">
-        @php
-            $today = \Carbon\Carbon::now();
-            $firstDay = $today->copy()->startOfMonth();
-            $lastDay = $today->copy()->endOfMonth();
-            $dayOfWeek = $firstDay->dayOfWeek; // 0=Sun ... 6=Sat
-        @endphp
-
-        @for($i=0; $i<$dayOfWeek; $i++)
-            <div></div>
-        @endfor
-
-        @for($day = 1; $day <= $lastDay->day; $day++)
-            @php $dayDate = $today->copy()->day($day)->format('Y-m-d'); @endphp
-            <div>
-                <label style="display:block; padding:6px; border:1px solid #ddd; border-radius:4px; text-align:center; cursor:pointer;">
-                    <input type="radio" name="date" value="{{ $dayDate }}" style="display:none;" @if(isset($date) && $date == $dayDate) checked @endif>
-                    {{ $day }}
-                </label>
-            </div>
-        @endfor
+        <button id="showBtn" class="btn">Показать</button>
     </div>
+
+    <div id="calendar" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:20px;">
+        <!-- Сетка чисел будет вставляться JS -->
+    </div>
+
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const monthInput = document.getElementById('month');
+                const calendarEl = document.getElementById('calendar');
+                const eventsListEl = document.getElementById('events-list');
+                const showBtn = document.getElementById('showBtn');
+
+                function generateCalendar(year, month) {
+                    calendarEl.innerHTML = '';
+                    const firstDay = new Date(year, month, 1).getDay();
+                    const lastDate = new Date(year, month + 1, 0).getDate();
+
+                    // смещение дней недели (понедельник=1)
+                    let offset = firstDay === 0 ? 6 : firstDay - 1;
+
+                    // пустые клетки
+                    for (let i = 0; i < offset; i++) {
+                        const empty = document.createElement('div');
+                        calendarEl.appendChild(empty);
+                    }
+
+                    for (let d = 1; d <= lastDate; d++) {
+                        const day = document.createElement('div');
+                        day.textContent = d;
+                        day.style.padding = '8px';
+                        day.style.border = '1px solid #ccc';
+                        day.style.textAlign = 'center';
+                        day.style.cursor = 'pointer';
+                        day.addEventListener('click', function() {
+                            const selectedDate = new Date(year, month, d);
+                            const y = selectedDate.getFullYear();
+                            const m = String(selectedDate.getMonth()+1).padStart(2,'0');
+                            const dayStr = String(selectedDate.getDate()).padStart(2,'0');
+                            window.location.href = "{{ route('events.filter') }}?date=" + y + '-' + m + '-' + dayStr;
+                        });
+                        calendarEl.appendChild(day);
+                    }
+                }
+
+                // показать календарь для текущего месяца
+                const now = new Date();
+                monthInput.value = now.toISOString().substr(0,7);
+                generateCalendar(now.getFullYear(), now.getMonth());
+
+                showBtn.addEventListener('click', function() {
+                    const [y,m] = monthInput.value.split('-');
+                    generateCalendar(parseInt(y), parseInt(m)-1);
+                });
+            });
+        </script>
+    @endpush
 
     <!-- Карточки мероприятий -->
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
