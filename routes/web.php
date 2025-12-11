@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\AnimalController as AdminAnimalController;
 use App\Http\Controllers\LostReportController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Страницы
@@ -53,15 +54,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
     Route::resource('animals', AdminAnimalController::class);
 });
 
-
-// Профиль
-use App\Http\Controllers\ProfileController;
-
+// профиль пользователя
 Route::prefix('profile')->middleware('auth')->group(function () {
-    Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/', [ProfileController::class, 'update'])->name('profile.update');
-    Route::post('/password', [ProfileController::class, 'password'])->name('profile.password');
-    Route::post('/avatar', [ProfileController::class, 'avatar'])->name('profile.avatar');
-});
+    Route::get('/', [\App\Http\Controllers\ProfileController::class, 'edit'])
+        ->name('profile.edit');
 
+    Route::post('/', [\App\Http\Controllers\ProfileController::class, 'update'])
+        ->name('profile.update');
+
+    Route::post('/password', [\App\Http\Controllers\ProfileController::class, 'password'])
+        ->name('profile.password');
+
+    Route::post('/avatar', [\App\Http\Controllers\ProfileController::class, 'avatar'])
+        ->name('profile.avatar');
+});
 

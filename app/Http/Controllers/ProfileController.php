@@ -3,38 +3,74 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
+    /**
+     * Страница профиля
+     */
     public function edit()
     {
-        return view('profile.edit');
+        $user = Auth::user();
+
+        // Если позже добавим запись на мероприятия — сюда попадут мероприятия пользователя:
+        $events = $user->events()->get() ?? collect();
+
+        return view('profile.edit', compact('user', 'events'));
     }
 
+    /**
+     * Обновление имени и e-mail
+     */
     public function update(Request $request)
     {
+        $user = Auth::user();
+
         $request->validate([
             'name'  => 'required|string|max:255',
-            'email' => 'required|email',
+            'email' => 'required|email|max:255',
         ]);
 
-        $user = auth()->user();
-        $user->update($request->only('name','email'));
+        $user->update($request->only('name', 'email'));
 
-        return back()->with('success', 'Данные обновлены');
+        return back()->with('success', 'Профиль обновлён');
     }
 
+    /**
+     * Смена пароля
+     */
     public function password(Request $request)
     {
         $request->validate([
-            'password' => 'required|string|min=6'
+            'password' => 'required|min:6|confirmed',
         ]);
 
-        $user = auth()->user();
-        $user->update([
-            'password' => bcrypt($request->password)
-        ]);
+        $user = Auth::user();
+        $user->password = Hash::make($request->password);
+        $user->save();
 
         return back()->with('success', 'Пароль изменён');
+    }
+
+    /**
+     * Загрузка аватара
+     */
+    public function avatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        // сохраняем в storage/app/public/avatars
+        $path = $request->file('avatar')->store('avatars', 'public');
+
+        $user->avatar = $path;
+        $user->save();
+
+        return back()->with('success', 'Аватар обновлён');
     }
 }

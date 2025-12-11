@@ -32,9 +32,9 @@
             <a href="{{ route('stories.index') }}">Ваши истории</a>
             <a href="{{ route('lost_reports.index') }}">Потеряшки/Найдёныши</a>
 
-        @auth
-                <a href="{{ route('dashboard') }}">Профиль</a>
-            @if(method_exists(auth()->user(), 'hasRole') ? auth()->user()->hasRole('admin') : (auth()->user()->role ?? null) === 'admin')
+            @auth
+                <a href="{{ route('profile.edit') }}">Профиль</a>
+                @if(method_exists(auth()->user(), 'hasRole') ? auth()->user()->hasRole('admin') : (auth()->user()->role ?? null) === 'admin')
                     <a href="{{ route('admin.dashboard') }}">Админ</a>
                 @endif
                 <form method="POST" action="{{ route('logout') }}" style="display:inline">
