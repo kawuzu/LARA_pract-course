@@ -106,4 +106,23 @@ class PageController extends Controller
         return view('pages.events.index', compact('events', 'date'));
     }
 
+    public function search(Request $request)
+    {
+        $query = Animal::query();
+
+        if ($request->filled('location')) {
+            $query->where('location', 'like', '%'.$request->location.'%');
+        }
+
+        $animals = $query->where('status', 'available')->paginate(12);
+
+        return view('pages.animals.index', compact('animals'));
+    }
+
+    public function storyShow(\App\Models\Story $story)
+    {
+        return view('pages.stories.show', compact('story'));
+    }
+
+
 }

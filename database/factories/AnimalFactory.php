@@ -21,6 +21,7 @@ class AnimalFactory extends Factory
             'description' => $this->faker->paragraph,
             'photo' => null,
             'status' => 'available',
+            'location' => $this->faker->city,
         ];
     }
 }

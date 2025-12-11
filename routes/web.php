@@ -12,6 +12,9 @@ use App\Http\Controllers\EventController;
 */
 //главная
 Route::get('/', [PageController::class, 'home'])->name('home');
+// поиск животных с фильтром по местоположению
+Route::get('/search', [\App\Http\Controllers\PageController::class, 'search'])->name('animals.search');
+
 
 //приютить
 Route::get('/animals', [PageController::class, 'animals'])->name('animals.index');
@@ -22,6 +25,8 @@ Route::get('/advices', [PageController::class, 'advices'])->name('advices.index'
 
 //ваши истории
 Route::get('/stories', [PageController::class, 'stories'])->name('stories.index');
+Route::get('/stories/{story}', [\App\Http\Controllers\PageController::class, 'storyShow'])->name('stories.show');
+
 
 // Потеряшки / найденыши
 Route::get('/lost-reports', [LostReportController::class, 'index'])->name('lost_reports.index');
