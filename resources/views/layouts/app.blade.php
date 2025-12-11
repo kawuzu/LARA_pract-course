@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>@yield('title','Приют')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
     <style>
         body{font-family:system-ui,Arial, sans-serif;margin:0;padding:0;color:#111;background:#f7f7f8}
         .container{max-width:1100px;margin:20px auto;padding:0 16px}
@@ -29,7 +30,9 @@
             <a href="{{ route('events.index') }}">Мероприятия</a>
             <a href="{{ route('advices.index') }}">Советы</a>
             <a href="{{ route('stories.index') }}">Истории</a>
-            @auth
+            <a href="{{ route('lost_reports.index') }}">Потеряшки/Найдёныши</a>
+
+        @auth
                 <a href="{{ route('dashboard') }}">Профиль</a>
                 @if(method_exists(auth()->user(), 'hasRole') ? auth()->user()->hasRole('admin') : (auth()->user()->role ?? null) === 'admin')
                     <a href="{{ route('admin.dashboard') }}">Админ</a>

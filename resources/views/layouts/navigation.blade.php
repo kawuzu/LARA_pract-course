@@ -4,8 +4,8 @@
     <a href="/events">Events</a> |
     <a href="/advices">Advices</a> |
     <a href="/stories">Stories</a> |
-    <a href="/admin">Admin</a>
-    @auth
+    <a href="/admin">Admin</a>|
+@auth
         <a href="{{ route('dashboard') }}">Личный кабинет</a>
         <form method="POST" action="{{ route('logout') }}" style="display:inline">
             @csrf

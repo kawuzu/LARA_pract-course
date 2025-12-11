@@ -45,4 +45,52 @@ class PageController extends Controller
         $stories = Story::with('user')->orderBy('created_at','desc')->paginate(10);
         return view('pages.stories.index', compact('stories'));
     }
+
+    public function lostFound()
+    {
+        $lost = Animal::where('category', 'lost')->orderBy('created_at', 'desc')->get();
+        $found = Animal::where('category', 'found')->orderBy('created_at', 'desc')->get();
+
+        return view('pages.lostfound', compact('lost', 'found'));
+    }
+
+    public function storeLost(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'photo' => 'nullable|image'
+        ]);
+
+        $data['category'] = 'lost';
+
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo')->store('animals','public');
+        }
+
+        Animal::create($data);
+
+        return redirect()->route('lostfound')->with('success','Потеряшка добавлена');
+    }
+
+    public function storeFound(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'photo' => 'nullable|image'
+        ]);
+
+        $data['category'] = 'found';
+
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo')->store('animals','public');
+        }
+
+        Animal::create($data);
+
+        return redirect()->route('lostfound')->with('success','Найдёныш добавлен');
+    }
+
+
 }
