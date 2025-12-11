@@ -106,5 +106,4 @@ class PageController extends Controller
         return view('pages.events.index', compact('events', 'date'));
     }
 
-
 }
