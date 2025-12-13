@@ -23,8 +23,8 @@
                     Откройте дверь своему новому четвероногому другу уже сегодня!
                 </p>
 
-                <form action="{{ route('animals.index') }}" method="GET">
-                    <input type="text" name="location" placeholder="где вы находитесь?">
+                <form action="{{ route('animals.search') }}" method="GET" class="search-form">
+                    <input type="text" name="location" placeholder="Где вы находитесь?" value="{{ request('location') }}">
                     <button type="submit">вперёд!</button>
                 </form>
             </div>
@@ -58,35 +58,25 @@
     </section>
 
     {{-- LOST --}}
-    <section class="home-lost">
-        <h2>Потеряли питомца?</h2>
-        <a href="{{ route('animals.index') }}" class="lost-btn">да!</a>
-    </section>
+    @include('partials.banner', ['banner' => \App\Models\Banner::inRandomOrder()->first()])
 
     {{-- STORIES --}}
-    <section class="home-stories">
+    <section class="stories-section">
         <h2>ваши истории</h2>
-
         <div class="stories-grid">
-            @foreach($stories ?? [] as $story)
-                <img src="{{ asset('storage/'.$story->image) }}">
+            @foreach(\App\Models\Story::with('user')->take(4)->get() as $story)
+                <a href="{{ route('stories.show', $story) }}" class="story-card">
+                    @if($story->photo)
+                        <img src="{{ asset('storage/' . $story->photo) }}" alt="{{ $story->title }}">
+                    @else
+                        <div class="no-image">Нет изображения</div>
+                    @endif
+                    <div class="overlay">{{ $story->title }}</div>
+                </a>
             @endforeach
         </div>
     </section>
 
     {{-- MAP + NEWS --}}
-    <section class="home-map">
-        <div class="map-box">
-            <img src="{{ asset('images/map.jpg') }}">
-        </div>
 
-        <div class="news-box">
-            <h3>будьте в курсе наших новостей</h3>
-
-            <form>
-                <input type="email" placeholder="адрес вашей почты">
-                <button>отправить</button>
-            </form>
-        </div>
-    </section>
 @endsection
