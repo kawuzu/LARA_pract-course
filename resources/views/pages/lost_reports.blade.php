@@ -23,7 +23,6 @@
         </div>
     </div>
 
-    <!-- Инструкции -->
     <div style="background: white; padding: 32px; margin: 24px auto; max-width: 1200px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
         <div style="margin-bottom: 32px;">
             <h2 style="color: #2E8B57; font-size: 1.8em; margin-bottom: 16px;">для потеряшек</h2>
@@ -70,7 +69,6 @@
         </div>
     </div>
 
-    <!-- Приют -->
     <div style="background: linear-gradient(135deg, #87CEEB 0%, #E0F7FA 100%); padding: 24px; margin: 24px auto; max-width: 1200px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
         <div style="flex: 1; padding: 16px; text-align: center;">
             <h3 style="color: #2E8B57; font-size: 1.6em; margin-bottom: 16px;">Ищем добрых людей!</h3>
@@ -82,7 +80,6 @@
         </div>
     </div>
 
-    <!-- ЧаВо -->
     <div style="background: white; padding: 32px; margin: 24px auto; max-width: 1200px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
         <h2 style="color: #2E8B57; font-size: 1.8em; margin-bottom: 16px;">ЧаВо</h2>
         <div style="background: #E8F5E9; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
@@ -102,7 +99,6 @@
         </div>
     </div>
 
-    <!-- Модалка "Потеряшка" -->
     <div id="modal-lost" class="modal" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000;">
         <div style="background:#fff;border-radius:12px;max-width:720px;margin:70px auto;padding:32px;position:relative;box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
             <button onclick="document.getElementById('modal-lost').style.display='none'" style="position:absolute;right:20px;top:20px;background:none;border:none;font-size:1.8em;cursor:pointer;color:#666;">✕</button>
@@ -141,7 +137,6 @@
         </div>
     </div>
 
-    <!-- Модалка "Найдёныш" -->
     <div id="modal-found" class="modal" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000;">
         <div style="background:#fff;border-radius:12px;max-width:720px;margin:70px auto;padding:32px;position:relative;box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
             <button onclick="document.getElementById('modal-found').style.display='none'" style="position:absolute;right:20px;top:20px;background:none;border:none;font-size:1.8em;cursor:pointer;color:#666;">✕</button>
@@ -180,7 +175,6 @@
         </div>
     </div>
 
-    <!-- Список заявок -->
     <div style="background: white; padding: 32px; margin: 24px auto; max-width: 1200px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
         <h2 style="color: #2E8B57; font-size: 1.8em; margin-bottom: 16px;">Потеряшки</h2>
         @foreach($lostReports as $report)
@@ -196,7 +190,6 @@
         @endforeach
     </div>
 
-    <!-- Истории усыновления -->
     <section style="background: white; padding: 32px; margin: 24px auto; max-width: 1200px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
         <h2 style="color: #2E8B57; font-size: 1.8em; margin-bottom: 16px;">ваши истории</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px;">
@@ -219,7 +212,6 @@
         </div>
     </section>
 
-    <!-- Подписка на новости -->
     <div style="background: linear-gradient(135deg, #87CEEB 0%, #E0F7FA 100%); padding: 24px; margin: 24px auto; max-width: 1200px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
         <div style="flex: 1;">
             <img src="{{ asset('images/map_example.png') }}" alt="Карта приютов" style="width: 100%; border-radius: 12px;">

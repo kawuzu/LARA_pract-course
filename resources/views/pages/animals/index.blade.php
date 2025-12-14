@@ -8,8 +8,6 @@
 
 @section('content')
     <section class="animals-page">
-
-        {{-- Заголовок + фильтры --}}
         <div class="animals-header">
             <h1>Животные в приюте</h1>
 
@@ -19,7 +17,6 @@
             </div>
         </div>
 
-        {{-- Карточки животных --}}
         <div class="animals-grid">
             @foreach($animals as $animal)
                 <div class="animal-card">
@@ -66,12 +63,10 @@
             @endforeach
         </div>
 
-        {{-- Пагинация --}}
         <div class="pagination">
             {{ $animals->links() }}
         </div>
 
-        {{-- Баннер советов --}}
         <section class="tips-banner">
             <div class="tips-image">
                 <img src="{{ asset('images/first_meeting_example.jpg') }}" alt="Советы">

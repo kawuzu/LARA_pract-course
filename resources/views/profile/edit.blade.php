@@ -9,7 +9,6 @@
 @section('content')
     <div class="profile-container">
 
-        <!-- Аватар и имя -->
         <div class="profile-header">
             <div class="avatar">
                 <img src="{{ $user->avatar ? asset('storage/'.$user->avatar) : 'https://via.placeholder.com/150' }}" alt="Аватар">
@@ -17,7 +16,6 @@
             <h1 class="profile-name">{{ $user->name }}</h1>
         </div>
 
-        <!-- Мои мероприятия -->
         <div class="profile-events">
             <h2>Мои мероприятия</h2>
             @if($events->count() === 0)
@@ -39,7 +37,6 @@
 
         <hr class="profile-separator">
 
-        <!-- Данные профиля -->
         <div class="profile-data">
             <h2>Данные профиля</h2>
             <form action="{{ route('profile.update') }}" method="POST" class="profile-form">

@@ -9,10 +9,8 @@ class AnimalSeeder extends Seeder
 {
     public function run()
     {
-        // создаём несколько тестовых животных
         Animal::factory()->count(8)->create();
 
-        // или можно вставить конкретные:
         Animal::create([
             'name' => 'Мурка',
             'species' => 'cat',

@@ -50,7 +50,6 @@
         @endauth
     </div>
 
-    <!-- Блок "Потеряли питомца?" -->
     <div style="background: white; padding: 32px; margin: 24px auto; max-width: 1200px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; display: flex; align-items: center; gap: 24px;">
         <div style="flex: 1;">
             <img src="{{ asset('images/lost_cat_example.jpg') }}" alt="Потерялся кот" style="width: 100%; border-radius: 12px;">
@@ -61,7 +60,6 @@
         </div>
     </div>
 
-    <!-- Подписка на новости -->
     <div style="background: linear-gradient(135deg, #87CEEB 0%, #E0F7FA 100%); padding: 24px; margin: 24px auto; max-width: 1200px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
         <div style="flex: 1;">
             <img src="{{ asset('images/map_example.png') }}" alt="Карта приютов" style="width: 100%; border-radius: 12px;">

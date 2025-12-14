@@ -3,7 +3,6 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
-    {{-- HERO --}}
     <section class="home-hero">
         <h1>Любовь спасает жизни!</h1>
         <p>
@@ -12,7 +11,6 @@
         </p>
     </section>
 
-    {{-- HERO CARD --}}
     <section class="home-hero-card">
         <div class="hero-card">
             <img src="{{ asset('images/cat.jpg') }}" alt="Котик">
@@ -31,7 +29,6 @@
         </div>
     </section>
 
-    {{-- HELP --}}
     <section class="home-help">
         <h2>как ещё можно помочь?</h2>
 
@@ -57,10 +54,8 @@
         </div>
     </section>
 
-    {{-- LOST --}}
     @include('partials.banner', ['banner' => \App\Models\Banner::inRandomOrder()->first()])
 
-    {{-- STORIES --}}
     <section class="stories-section">
         <h2>ваши истории</h2>
         <div class="stories-grid">
@@ -76,7 +71,4 @@
             @endforeach
         </div>
     </section>
-
-    {{-- MAP + NEWS --}}
-
 @endsection

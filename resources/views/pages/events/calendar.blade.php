@@ -5,7 +5,6 @@
 @section('content')
     <h1>Наши мероприятия</h1>
 
-    <!-- Календарь -->
     <div style="margin-bottom:20px;">
         <label for="month">Выберите месяц:</label>
         <input type="month" id="month" name="month" />
@@ -14,10 +13,8 @@
     </div>
 
     <div id="calendar" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:20px;">
-        <!-- Сетка чисел будет вставляться JS -->
     </div>
 
-    <!-- События -->
     <div class="grid" id="events-list" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
         @forelse($events as $event)
             <div class="card">
@@ -43,10 +40,8 @@
                     const firstDay = new Date(year, month, 1).getDay();
                     const lastDate = new Date(year, month + 1, 0).getDate();
 
-                    // смещение дней недели (понедельник=1)
                     let offset = firstDay === 0 ? 6 : firstDay - 1;
 
-                    // пустые клетки
                     for (let i = 0; i < offset; i++) {
                         const empty = document.createElement('div');
                         calendarEl.appendChild(empty);
@@ -70,7 +65,6 @@
                     }
                 }
 
-                // показать календарь для текущего месяца
                 const now = new Date();
                 monthInput.value = now.toISOString().substr(0,7);
                 generateCalendar(now.getFullYear(), now.getMonth());
