@@ -14,7 +14,7 @@ class PageController extends Controller
     {
         $events = Event::orderBy('starts_at')->take(3)->get();
         $animals = Animal::where('status', 'available')->take(6)->get();
-        return view('pages.home', compact('events', 'animals'));
+        return view('pages.home', compact('events', 'animals', ));
     }
 
     public function animals()

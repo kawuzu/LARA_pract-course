@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class EventDateFactory extends Factory
 {
     /**
-     * Define the model's default state.
      *
      * @return array<string, mixed>
      */

@@ -19,7 +19,6 @@ class Event extends Model
         'capacity',
     ];
 
-    // Объявляем, что эти поля — даты
     protected $casts = [
         'starts_at' => 'datetime',
         'ends_at' => 'datetime',

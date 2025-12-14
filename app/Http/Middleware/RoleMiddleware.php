@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 class RoleMiddleware
 {
     /**
-     * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -21,11 +20,9 @@ class RoleMiddleware
         $user = auth()->user();
 
         if (! $user) {
-            // неавторизованные — редирект на login
             return redirect()->route('login');
         }
 
-        // если использован Spatie (метод hasRole), используем его, иначе проверяем поле role в таблице users
         if (method_exists($user, 'hasRole')) {
             if (! $user->hasRole($role)) {
                 abort(403, 'Access denied.');

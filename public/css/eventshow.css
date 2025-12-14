@@ -1,0 +1,17 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contentimg{
+    width: 300px;
+}
+
+.content p{
+    width: 50%;
+}
+
+a.btn{
+    background-color: #CEEAB9;
+}

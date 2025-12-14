@@ -9,14 +9,14 @@ return new class extends Migration {
     {
         Schema::create('lost_reports', function (Blueprint $table) {
             $table->id();
-            $table->string('type'); // "lost" или "found"
-            $table->string('name')->nullable(); // имя питомца
+            $table->string('type');
+            $table->string('name')->nullable();
             $table->string('species')->nullable();
             $table->string('breed')->nullable();
             $table->integer('age')->nullable();
             $table->string('location')->nullable();
             $table->text('description')->nullable();
-            $table->string('photo')->nullable(); // путь к фото
+            $table->string('photo')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });

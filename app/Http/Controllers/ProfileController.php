@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    /**
-     * Страница профиля
-     */
     public function edit()
     {
         $user = auth()->user();
@@ -19,10 +16,6 @@ class ProfileController extends Controller
         return view('profile.edit', compact('user', 'events'));
     }
 
-
-    /**
-     * Обновление имени и e-mail
-     */
     public function update(Request $request)
     {
         $user = Auth::user();
@@ -37,9 +30,6 @@ class ProfileController extends Controller
         return back()->with('success', 'Профиль обновлён');
     }
 
-    /**
-     * Смена пароля
-     */
     public function password(Request $request)
     {
         $request->validate([
@@ -53,9 +43,6 @@ class ProfileController extends Controller
         return back()->with('success', 'Пароль изменён');
     }
 
-    /**
-     * Загрузка аватара
-     */
     public function avatar(Request $request)
     {
         $request->validate([

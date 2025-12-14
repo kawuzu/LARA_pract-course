@@ -11,38 +11,25 @@
         <h1>наши мероприятия</h1>
         <p>Станьте частью команды — участвуйте в наших акциях и благотворительных событиях!</p>
     </div>
-
-    <div class="events-info">
-        <div class="event-card">
-            <h2>Дни открытых дверей</h2>
-            <p>В этот день наш приют будет открыт для всех желающих. Вы сможете встретиться с кошками, узнать их истории и познакомиться с волонтёрами, которые заботятся о питомцах даже стать одним из них.</p>
+    <div class="calenimg">
+        <div class="calenimg_img">
+            <img src="{{ asset('images/cat1.jpg') }}" alt="Котик">
         </div>
-        <div class="event-card">
-            <h2>Кото-фото-сессия</h2>
-            <p>Приглашаем вас сделать профессиональные фото с нашими подопечными. Вы сможете выбрать своего "модельного" питомца и сделать вместе с ним смешные и трогательные фотографии. Все сборы от мероприятия пойдут на нужды приюта.</p>
-        </div>
-        <div class="event-card">
-            <h2>Кошачьи мастер-классы: Знатоки будущего для пушистых друзей</h2>
-            <p>Серия мастер-классов, посвященных уходу за кошками, их воспитанию и психологии. Ведущими мероприятий станут ветеринары, кинологи и опытные владельцы кошек.</p>
+        <div class="calendar-container">
+            <div class="calendar-controls">
+                <input type="month" id="month" name="month" />
+                <div id="calendar" class="calendar-grid"></div>
+                <button id="showBtn">Показать</button>
+            </div>
         </div>
     </div>
-
-    <div class="calendar-container">
-        <div class="calendar-controls">
-            <label for="month">Выберите месяц:</label>
-            <input type="month" id="month" name="month" />
-            <button id="showBtn">Показать</button>
-        </div>
-        <div id="calendar" class="calendar-grid"></div>
-    </div>
-
     <div class="events-cards">
         @forelse($events as $event)
             <div class="event-card-item">
-                <h3>{{ $event->title }}</h3>
+                <a href="{{ route('events.show', $event) }}" ><h3>{{ $event->title }}</h3></a>
                 <p class="event-date">{{ $event->starts_at ? $event->starts_at->format('d.m.Y H:i') : '' }} — {{ $event->location }}</p>
                 <p>{{ \Illuminate\Support\Str::limit($event->description, 160) }}</p>
-                <a href="{{ route('events.show', $event) }}" class="btn-more">Подробнее</a>
+
             </div>
         @empty
             <div class="event-card-item empty">Нет мероприятий на выбранную дату.</div>

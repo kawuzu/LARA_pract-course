@@ -16,7 +16,7 @@ class CreateAnimalsTable extends Migration
             $table->integer('age')->nullable();
             $table->enum('sex', ['male','female','unknown'])->default('unknown');
             $table->text('description')->nullable();
-            $table->string('photo')->nullable(); // URL или путь
+            $table->string('photo')->nullable();
             $table->enum('status', ['available','adopted','fostered','not_available'])->default('available');
             $table->timestamps();
         });

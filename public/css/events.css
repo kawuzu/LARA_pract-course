@@ -1,0 +1,145 @@
+/* Header info */
+.events-header {
+    background: white;
+    padding: 24px;
+    text-align: center;
+}
+
+.events-header h1 {
+    color: #2E8B57;
+    font-size: 2em;
+    margin-bottom: 16px;
+}
+
+.events-header p {
+    font-size: 1.1em;
+    margin-bottom: 24px;
+}
+
+/* Event info blocks */
+.events-info {
+    background: white;
+    padding: 32px;
+    margin: 24px auto;
+    max-width: 1200px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.events-info .event-card {
+    background: #E8F5E9;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.events-info .event-card h2 {
+    color: #2E8B57;
+    font-size: 1.4em;
+    margin-bottom: 8px;
+}
+
+/* Calendar */
+.calendar-container {
+    margin: 24px auto;
+    max-width: 1200px;
+}
+
+.calendar-controls {
+    flex-direction: column;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+
+.calendar-controls input[type="month"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.calendar-controls button {
+    background: #b6efb6;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    width: 400px;
+    height: 300px;
+}
+
+.calendar-day {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px;
+    border: 1px solid #005d8a54;
+    text-align: center;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #005D8A;
+}
+
+.calendar-day.empty {
+    border: none;
+}
+
+/* Event cards */
+.events-cards {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    margin: 24px auto;
+    max-width: 1200px;
+}
+
+.event-card-item {
+    width: 80%;
+    background: #E6F4DC;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 16px;
+    padding-left: 40px;
+}
+
+.event-card-item h3 {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    text-decoration: none;
+}
+
+.event-card-item .event-date {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+}
+
+.event-card-item p {
+    margin-bottom: 16px;
+}
+
+.event-card-item.empty {
+    text-align: center;
+}
+
+.calenimg_img img{
+    display: flex;
+    align-items: center;
+    width: 600px;
+}
+
+.calenimg{
+    height: 426px;
+    display: flex;
+    background-color: #4DC5FF;
+    align-items: center;
+}

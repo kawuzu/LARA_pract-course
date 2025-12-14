@@ -8,23 +8,21 @@ class CreatePermissionTables extends Migration
 {
     public function up(): void
     {
-        // permissions
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');       // имя permission'а
-            $table->string('guard_name'); // guard — обычно "web"
+            $table->string('name');
+            $table->string('guard_name');
             $table->timestamps();
         });
 
         // roles
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');       // название роли (admin, user)
-            $table->string('guard_name'); // guard — обычно "web"
+            $table->string('name');
+            $table->string('guard_name');
             $table->timestamps();
         });
 
-        // model_has_permissions
         Schema::create('model_has_permissions', function (Blueprint $table) {
             $table->unsignedBigInteger('permission_id');
 
@@ -40,7 +38,6 @@ class CreatePermissionTables extends Migration
             $table->primary(['permission_id', 'model_id', 'model_type'], 'model_has_permissions_permission_model_type_primary');
         });
 
-        // model_has_roles
         Schema::create('model_has_roles', function (Blueprint $table) {
             $table->unsignedBigInteger('role_id');
 
@@ -56,7 +53,7 @@ class CreatePermissionTables extends Migration
             $table->primary(['role_id', 'model_id', 'model_type'], 'model_has_roles_role_model_type_primary');
         });
 
-        // role_has_permissions
+
         Schema::create('role_has_permissions', function (Blueprint $table) {
             $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('role_id');

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\LostReport;
-use Illuminate\Support\Facades\Storage;
 
 class LostReportController extends Controller
 {
