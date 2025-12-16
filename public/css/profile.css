@@ -102,3 +102,17 @@
     color: #888;
 }
 
+.profile-data button{
+    border: none;
+    height: 50px;
+    background-color: #CEEAB9;
+    border-radius: 5px;
+}
+
+.profile-header button{
+    border: none;
+    height: 50px;
+    background-color: #CEEAB9;
+    border-radius: 5px;
+}
+

@@ -51,7 +51,6 @@ class ProfileController extends Controller
 
         $user = Auth::user();
 
-        // сохраняем в storage/app/public/avatars
         $path = $request->file('avatar')->store('avatars', 'public');
 
         $user->avatar = $path;

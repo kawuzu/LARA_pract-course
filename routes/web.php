@@ -27,9 +27,9 @@ Route::get('/events/filter', [EventController::class, 'filter'])->name('events.f
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 Route::post('/events/{event}/register', [EventController::class, 'register'])->middleware('auth')->name('events.register');
 
-Route::get('/dashboard', function () {
+Route::get('/home', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth'])->name('home');
 
 require __DIR__.'/auth.php';
 
