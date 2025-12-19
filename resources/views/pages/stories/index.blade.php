@@ -8,7 +8,7 @@
     @foreach($stories as $story)
         <div class="card">
             <a href="{{ route('stories.show', $story) }}">
-                <img src="{{ asset('images/story2.jpg'.$story->image) }}" alt="{{ $story->title }}">
+                <img src="{{ asset('storage/' . $story->photo) }}" alt="{{ $story->title }}" style="width:20%;max-height:400px;object-fit:cover;margin-bottom:12px;">
                 <h3>{{ $story->title }}</h3>
             </a>
 

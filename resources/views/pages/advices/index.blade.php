@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title','Советы')
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css/advice.css') }}">
     <div style="background: white; padding: 24px; margin: 24px auto; max-width: 1200px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
         <h1 style="color: #2E8B57; font-size: 2.2em; text-align: center; margin-bottom: 16px;">впервые заводите питомца?</h1>
         <p style="text-align: center; font-size: 1.1em; color: #666; margin-bottom: 24px;">у нас есть несколько советов как найти общий язык с вашим первым хвостатым другом</p>
@@ -33,37 +34,32 @@
         </div>
     </div>
 
-    <div style="background: white; padding: 24px; margin: 24px auto; max-width: 1200px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
-        <h2 style="color: #2E8B57; font-size: 1.8em; margin-bottom: 16px;">считаете что не готовы к питомцу, но хотите помочь?</h2>
-        <p style="font-size: 1.1em; color: #666; margin-bottom: 24px;">тогда вы можете</p>
+    <section class="home-help">
+        <h2>как ещё можно помочь?</h2>
 
-        <div style="display: flex; justify-content: center; gap: 48px; align-items: center; margin-bottom: 24px;">
-            <div style="text-align: center;">
-                <div style="font-size: 3em; margin-bottom: 8px;">👍</div>
+        <div class="help-grid">
+            <div class="help-item">
+                <img src="{{ asset('images/help-donate.svg') }}">
+                <h3>пожертвовать</h3>
+                <p>
+                    Финансовая поддержка поможет приюту обеспечить корм и лечение
+                    бездомным кошкам.
+                </p>
             </div>
-            <div style="font-size: 2em; color: #888;">ИЛИ</div>
-            <div style="text-align: center;">
-                <div style="font-size: 3em; margin-bottom: 8px;">😊</div>
+
+            <div class="help-divider">или</div>
+
+            <div class="help-item">
+                <img src="{{ asset('images/help-volunteer.svg') }}">
+                <h3>стать волонтёром</h3>
+                <p>
+                    Помогите в уходе за животными и участвуйте в новых проектах приюта!
+                </p>
             </div>
         </div>
+    </section>
 
-        <div style="display: flex; justify-content: center; gap: 48px;">
-            <div style="text-align: center; max-width: 300px;">
-                <h3 style="color: #2E8B57; font-size: 1.4em; margin-bottom: 8px;">пожертвовать</h3>
-            </div>
-            <div style="text-align: center; max-width: 300px;">
-                <h3 style="color: #2E8B57; font-size: 1.4em; margin-bottom: 8px;">стать волонтёром</h3>
-            </div>
-        </div>
-    </div>
-
-    <div style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ asset('images/cat_closeup_example.jpg') }}'); background-size: cover; background-position: center; padding: 32px; margin: 24px auto; max-width: 1200px; border-radius: 12px; color: white; display: flex; justify-content: space-between; align-items: center;">
-        <div style="flex: 1; text-align: left;">
-            <h2 style="font-size: 2em; margin-bottom: 16px;">Ищем добрых людей!</h2>
-            <p style="font-size: 1.1em; margin-bottom: 16px;">Наш приют предлагает возможность присоединиться к мероприятиям, где вы можете оказать помощь нашим четвероногим друзьям.</p>
-            <button style="background: #8BC34A; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 1em; cursor: pointer;">посмотреть</button>
-        </div>
-    </div>
+    @include('partials.banner', ['banner' => \App\Models\Banner::inRandomOrder()->first()])
 
     <div style="margin-top: 12px; text-align: center;">
         {{ $advices->links() }}

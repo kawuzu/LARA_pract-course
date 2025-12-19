@@ -1,0 +1,20 @@
+.home-help {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.help-grid {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-top: 40px;
+}
+
+.help-item {
+    max-width: 260px;
+}
+
+.help-divider {
+    font-size: 18px;
+    align-self: center;
+}

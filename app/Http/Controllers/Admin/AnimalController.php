@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class AnimalController extends Controller
 {
-    // Убираем конструктор с $this->middleware, защита через routes group
-
     public function index()
     {
         $animals = Animal::orderBy('created_at', 'desc')->paginate(20);

@@ -12,7 +12,6 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            // добавляем алиас 'role' для нашего middleware
             'role' => \App\Http\Middleware\RoleMiddleware::class,
         ]);
     })
